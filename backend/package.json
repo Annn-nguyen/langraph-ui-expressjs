@@ -1,0 +1,40 @@
+{
+  "name": "ai-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@langchain/anthropic": "^0.3.13",
+    "@langchain/community": "^0.3.29",
+    "@langchain/core": "^0.3.39",
+    "@langchain/langgraph": "^0.2.45",
+    "@langchain/langgraph-checkpoint-mongodb": "^0.0.6",
+    "@langchain/openai": "^0.4.4",
+    "@langchain/qdrant": "^0.1.1",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "ioredis": "^5.5.0",
+    "mammoth": "^1.9.0",
+    "mongodb": "^6.14.2",
+    "openai": "^4.83.0",
+    "otplib": "^12.0.1",
+    "pdf-parse": "^1.1.1",
+    "puppeteer": "^24.2.0",
+    "uuid": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.10",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
