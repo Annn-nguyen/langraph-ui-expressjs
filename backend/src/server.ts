@@ -28,48 +28,58 @@ interface MulterRequest extends ExpressRequest {
 // ✅ Route to handle chat messages
 app.post("/chat", async (req: Request, res: Response): Promise<any> => {
   try {
-      const { message, sessionId } = req.body;
-      if (!message) return res.status(400).json({ error: "Message is required" });
+    const { message, sessionId } = req.body;
+    if (!message) return res.status(400).json({ error: "Message is required" });
 
-      const response = await processChat([new HumanMessage(message)], sessionId);
-      res.json({ reply: response.messages[response.messages.length - 1].content });
+    const response = await processChat([new HumanMessage(message)], sessionId);
+    res.json({ reply: response.messages[response.messages.length - 1].content });
   } catch (error) {
-      console.error("Chat Error:", error);
-      res.status(500).json({ error: "Internal Server Error" });
+    console.error("Chat Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
 app.post("/qnote", upload.single("file"), async (req: MulterRequest, res: Response): Promise<any> => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ error: "File is required" });
+    if (req.file) {
+      // Process uploaded file
+      const filePath = path.resolve(req.file.path);
+      const workbook = xlsx.readFile(filePath);
+
+      // Get the first sheet
+      const firstSheetName = workbook.SheetNames[0];
+      const firstSheet = workbook.Sheets[firstSheetName];
+
+      // Parse the sheet into JSON
+      const data = xlsx.utils.sheet_to_json(firstSheet);
+
+      const clinicalNotes = data.map((item: any) => ({
+        id: item["No."],
+        content: item["Clinical Note"],
+      }));
+
+      const results = [];
+      for await (const note of clinicalNotes) {
+        const result = await processQNote(note.content);
+        results.push({ id: note.id, clinicalNote: note.content, assessment: result.assessment });
+      }
+
+      fs.unlinkSync(filePath);
+
+      res.json({ message: "File processed successfully", results });
+    } else if (req.body.clinicalNote) {
+      // Process single clinical note
+      const clinicalNote = req.body.clinicalNote;
+      const result = await processQNote(clinicalNote);
+
+      res.json({
+        message: "Clinical note processed successfully", results: [{
+          id: 1,
+          clinicalNote: clinicalNote,
+          assessment: result.assessment
+        }]
+      });
     }
-
-    // Read the uploaded Excel file
-    const filePath = path.resolve(req.file.path);
-    const workbook = xlsx.readFile(filePath);
-
-    // Get the first sheet
-    const firstSheetName = workbook.SheetNames[0];
-    const firstSheet = workbook.Sheets[firstSheetName];
-
-    // Parse the sheet into JSON
-    const data = xlsx.utils.sheet_to_json(firstSheet);
-
-    const clinicalNotes = data.map((item: any) => ({
-      id: item["No."],
-      content: item["Clinical Note"],
-    }));
-
-    const results = [];
-    for await (const note of clinicalNotes) {
-      const result = await processQNote(note.content);
-      results.push({ id: note.id, clinicalNote: note.content, assessment: result.assessment });
-    }
-
-    fs.unlinkSync(filePath);
-
-    res.json({ message: "File processed successfully", results });
   } catch (error) {
     console.error("QNote Error:", error);
     res.status(500).json({ error: "Internal Server Error" });

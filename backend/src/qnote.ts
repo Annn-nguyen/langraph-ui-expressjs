@@ -8,8 +8,7 @@ const model = new ChatOpenAI({ model: "gpt-4o" });
 interface IAssessment {
     summary: string;
     suggestionsForImprovement: string;
-    chiefComplaint: number;
-    historyOfPresentIllness: number;
+    chiefComplaintAndHPI: number;
     pastMedicalHistory: number;
     allergiesAndAdverseDrugReactions: number;
     physicalFindings: number;
@@ -19,10 +18,9 @@ interface IAssessment {
 }
 
 const assessmentSchema = z.object({
-    summary: z.string(),
-    suggestionsForImprovement: z.string(),
-    chiefComplaint: z.number(),
-    historyOfPresentIllness: z.number(),
+    summary: z.string().describe("in HTML format"),
+    suggestionsForImprovement: z.string().describe("in HTML format"),
+    chiefComplaintAndHPI: z.number(),
     pastMedicalHistory: z.number(),
     allergiesAndAdverseDrugReactions: z.number(),
     physicalFindings: z.number(),
