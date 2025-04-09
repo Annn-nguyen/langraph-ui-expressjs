@@ -17,7 +17,7 @@ Categorize the input note into Qnote’s 8 elements:
 2. **History of Present Illness**
 3. **Past Medical History**
 4. **Allergies & Adverse Drug Reactions**
-5. **Physical Findings (including Vitals)**
+5. **Visual Findings**
 6. **Assessment (Diagnosis & Differential)**
 7. **Plan of Care**
 8. **Follow-Up Instructions**
@@ -187,39 +187,21 @@ In your final report, after listing the Element Scores and Average Score, provid
 
 ---
 
-### Example of Scoring
+### Output
 
-Suppose the note states:
+Provide the following in the output:
 
-**Chief Complaint:** “Fever for 2 days”
-**HPI:** “Patient reports low-grade fever for 2 days, occasional chills, denies other symptoms.”
-**PMH:** “Hypertension.”
-**Allergies:** (No mention)
-**Physical Findings:** “Temp 99.5F. BP 130/85 mmHg.”
-**Assessment:** “Likely viral syndrome.”
-**Plan:** “Advise increased fluid intake, rest.”
-**Follow-Up:** “Call if fever persists >3 days.”
+- Summary
+- Suggestions for Improvement
 
-**Scoring Example:**
-
-- CC: 100 (clear and concise)
-- HPI: 90 (missing mention of severity, e.g., is it mild or moderate? -10)
-- PMH: 100 (noted as “Hypertension”)
-- Allergies & ADR: 0 (missing entirely, -100, but capped at 0)
-- Physical Findings: 90 (missing heart rate, but has BP & temp. -10 for incomplete vitals)
-- Assessment: 100 (clearly states “viral syndrome”)
-- Plan: 100 (treatment plan is documented)
-- Follow-Up: 100 (instructions given)
-
-**Sum** = 100 + 90 + 100 + 0 + 90 + 100 + 100 + 100 = 680
-**Average** = 680 ÷ 8 = 85
-**Rounded Average Score** = 85
-
-**Suggestions for Improvement:**
-
-- Include allergy information (e.g., “No known drug allergies” if none).
-- Provide a brief severity scale in the HPI (e.g., 1–10).
-
+- Chief Complaint Score
+- History of Present Illness Score
+- Past Medical History Score
+- Allergies & Adverse Drug Reactions Score
+- Physical Findings Score
+- Assessment Score
+- Plan of Care Score
+- Follow-Up Instructions Score
 `;
 
 export default prompt;

@@ -75,6 +75,9 @@ const QNote = () => {
             <tr>
               <th style={{ border: "1px solid #ddd", padding: "8px" }}>ID</th>
               <th style={{ border: "1px solid #ddd", padding: "8px" }}>Clinical Note</th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Score</th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Avg Score</th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Suggestions for Improvement</th>
               <th style={{ border: "1px solid #ddd", padding: "8px" }}>Assessment</th>
             </tr>
           </thead>
@@ -83,7 +86,23 @@ const QNote = () => {
               <tr key={result.id}>
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>{result.id}</td>
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>{result.clinicalNote}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{result.assessment}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{`${result.assessment.chiefComplaint} - ${result.assessment.historyOfPresentIllness} - ${result.assessment.pastMedicalHistory} - ${result.assessment.allergiesAndAdverseDrugReactions} - ${result.assessment.physicalFindings} - ${result.assessment.assessment} - ${result.assessment.planOfCare} - ${result.assessment.followUpInstructions}`}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {Math.round(
+                    (
+                      result.assessment.chiefComplaint +
+                      result.assessment.historyOfPresentIllness +
+                      result.assessment.pastMedicalHistory +
+                      result.assessment.allergiesAndAdverseDrugReactions +
+                      result.assessment.physicalFindings +
+                      result.assessment.assessment +
+                      result.assessment.planOfCare +
+                      result.assessment.followUpInstructions
+                    ) / 8
+                  )}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{result.assessment.suggestionsForImprovement}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{result.assessment.summary}</td>
               </tr>
             ))}
           </tbody>
