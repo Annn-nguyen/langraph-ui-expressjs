@@ -67,18 +67,9 @@ app.post("/qnote", upload.single("file"), async (req: MulterRequest, res: Respon
       results.push({ id: note.id, clinicalNote: note.content, assessment: result.assessment });
     }
 
-    // Write results to a new Excel file with a timestamp
-    const newSheet = xlsx.utils.json_to_sheet(results);
-    const newWorkbook = xlsx.utils.book_new();
-    xlsx.utils.book_append_sheet(newWorkbook, newSheet, "Results");
-
-    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-    const outputFilePath = path.resolve(`output/results-${timestamp}.xlsx`);
-    xlsx.writeFile(newWorkbook, outputFilePath);
-
     fs.unlinkSync(filePath);
 
-    res.json({ message: "File processed successfully", filePath: outputFilePath });
+    res.json({ message: "File processed successfully", results });
   } catch (error) {
     console.error("QNote Error:", error);
     res.status(500).json({ error: "Internal Server Error" });

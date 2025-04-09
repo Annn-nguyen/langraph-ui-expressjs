@@ -7,12 +7,13 @@ const Layout = ({ children }) => {
       display: 'flex', 
       justifyContent: 'center', 
       alignItems: 'center', 
-      height: '100vh', 
+      minHeight: '100vh', 
       backgroundColor: theme.body.backgroundColor, 
       color: theme.body.color, 
       fontFamily: theme.body.fontFamily, 
       margin: theme.body.margin, 
-      padding: theme.body.padding 
+      padding: theme.body.padding, 
+      overflowY: 'auto' 
     }}>
       {children}
     </div>
