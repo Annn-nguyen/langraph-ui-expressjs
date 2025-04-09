@@ -8,14 +8,14 @@ coverage
 *.DS_Store
 *.env
 
+backend/uploads/**/*
+!backend/uploads/*.js
+
+backend/output/**/*
+!backend/output/*.js
+
 config/*.json
 config/*.p8
 
-uploads/**/*.*
-!uploads/**/*.js
-
 swagger_output.json
 qdrant_storage/
-
-*.mp3
-*.pdf

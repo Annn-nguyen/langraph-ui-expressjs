@@ -136,6 +136,10 @@ Optional elements are bonus ones, meaning:
 - Medication List (the list of medications prescribed by the provider)
 - Social and Family History
 - Review of Systems
+
+
+Here is the clinical note:
+{{clinicalNotes}}
 `
 
 export default prompt;
