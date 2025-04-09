@@ -17,6 +17,7 @@ const QNote = () => {
     }
 
     setLoading(true);
+    setResults([]);
 
     const formData = new FormData();
     formData.append("file", file);
@@ -65,7 +66,7 @@ const QNote = () => {
         }}
         disabled={loading}
       >
-        {loading ? "Uploading..." : "Upload"}
+        {loading ? "Processing..." : "Upload"}
       </button>
 
       {results.length > 0 && (
