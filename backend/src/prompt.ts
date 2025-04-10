@@ -110,21 +110,21 @@ Then your output will be considered **invalid and disregarded**.
 
 Provide the following in the output:
 
-- Summary (in HTML format).
-- Suggestions for Improvement (in HTML format).
+- The summary of the assessment (in HTML format).
+- The suggestions for improvement (in HTML format).
 
-- Chief Complaint & HPI Score.
-- Past Medical History Score.
-- Allergies & Adverse Drug Reactions Score.
-- Visual Findings Score.
-- Assessment Score.
-- Plan of Care Score.
-- Follow-Up Instructions Score.
+- The score of the chief complaint & history of present illness.
+- The score of the past medical history.
+- The score of the allergies & adverse drug reactions.
+- The score of the physical / visual findings.
+- The score of the assessment.
+- The score of the plan of care.
+- The score of the follow-up instructions.
 
-- Problem List Score.
-- Medication List Score.
-- Social and Family History Score.
-- Review of Systems Score.
+- The score of the problem list.
+- The score of the medication list.
+- The score of the social and family history.
+- The score of the review of systems.
 `;
 
 export default prompt;
