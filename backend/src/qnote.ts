@@ -15,6 +15,10 @@ interface IAssessment {
     assessment: number;
     planOfCare: number;
     followUpInstructions: number;
+    problemList: number;
+    medicationList: number;
+    socialAndFamilyHistory: number;
+    reviewOfSystems: number;
 }
 
 const assessmentSchema = z.object({
@@ -27,6 +31,10 @@ const assessmentSchema = z.object({
     assessment: z.number(),
     planOfCare: z.number(),
     followUpInstructions: z.number(),
+    problemList: z.number(),
+    medicationList: z.number(),
+    socialAndFamilyHistory: z.number(),
+    reviewOfSystems: z.number(),
 });
 
 const AppState = Annotation.Root({

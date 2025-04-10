@@ -138,8 +138,8 @@ const QNote = () => {
                 <table style={{ marginTop: "20px", width: "100%", borderCollapse: "collapse", overflowX: "auto", display: "block" }}>
                     <thead>
                         <tr>
-                            <th style={{ border: "1px solid #ddd", padding: "8px", position: "sticky", left: "0", backgroundColor: "#f8f9fa" }}>ID</th>
-                            <th style={{ border: "1px solid #ddd", padding: "8px", position: "sticky", left: "80px", backgroundColor: "#f8f9fa", width: "300px" }}>Clinical Note</th>
+                            <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f8f9fa" }}>ID</th>
+                            <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f8f9fa", width: "300px" }}>Clinical Note</th>
                             <th style={{ border: "1px solid #ddd", padding: "8px", width: "100px" }}>Score</th>
                             <th style={{ border: "1px solid #ddd", padding: "8px", width: "30px" }}>Avg Score</th>
                             <th style={{ border: "1px solid #ddd", padding: "8px", width: "300px" }}>Suggestions for Improvement</th>
@@ -151,19 +151,25 @@ const QNote = () => {
                             <tr key={result.id}>
                                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>{result.id}</td>
                                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>{result.clinicalNote}</td>
-                                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{`${result.assessment.chiefComplaintAndHPI} - ${result.assessment.pastMedicalHistory} - ${result.assessment.allergiesAndAdverseDrugReactions} - ${result.assessment.physicalFindings} - ${result.assessment.assessment} - ${result.assessment.planOfCare} - ${result.assessment.followUpInstructions}`}</td>
+                                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{`${result.assessment.chiefComplaintAndHPI} - ${result.assessment.pastMedicalHistory} - ${result.assessment.allergiesAndAdverseDrugReactions} - ${result.assessment.physicalFindings} - ${result.assessment.assessment} - ${result.assessment.planOfCare} - ${result.assessment.followUpInstructions} - ${result.assessment.problemList} - ${result.assessment.medicationList} - ${result.assessment.socialAndFamilyHistory} - ${result.assessment.reviewOfSystems}`}</td>
                                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                                    {Math.round(
-                                        (
-                                            result.assessment.chiefComplaintAndHPI +
-                                            result.assessment.pastMedicalHistory +
-                                            result.assessment.allergiesAndAdverseDrugReactions +
-                                            result.assessment.physicalFindings +
-                                            result.assessment.assessment +
-                                            result.assessment.planOfCare +
-                                            result.assessment.followUpInstructions
-                                        ) / 7
-                                    )}
+                                    {
+                                        Math.round(
+                                            (
+                                                result.assessment.chiefComplaintAndHPI +
+                                                result.assessment.pastMedicalHistory +
+                                                result.assessment.allergiesAndAdverseDrugReactions +
+                                                result.assessment.physicalFindings +
+                                                result.assessment.assessment +
+                                                result.assessment.planOfCare +
+                                                result.assessment.followUpInstructions
+                                            ) / 7
+                                        )
+                                        + result.assessment.problemList
+                                        + result.assessment.medicationList
+                                        + result.assessment.socialAndFamilyHistory
+                                        + result.assessment.reviewOfSystems
+                                    }
                                 </td>
                                 <td style={{ border: "1px solid #ddd", padding: "8px" }} dangerouslySetInnerHTML={{ __html: result.assessment.suggestionsForImprovement }}></td>
                                 <td style={{ border: "1px solid #ddd", padding: "8px" }} dangerouslySetInnerHTML={{ __html: result.assessment.summary }}></td>
