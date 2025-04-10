@@ -22,8 +22,8 @@ interface IAssessment {
 }
 
 const assessmentSchema = z.object({
-    summary: z.string().describe("in HTML format"),
-    suggestionsForImprovement: z.string().describe("in HTML format"),
+    summary: z.string().describe("The summary of the assessment in HTML format"),
+    suggestionsForImprovement: z.string().describe("The suggestions for improvement in HTML format"),
     chiefComplaintAndHPI: z.number(),
     pastMedicalHistory: z.number(),
     allergiesAndAdverseDrugReactions: z.number(),

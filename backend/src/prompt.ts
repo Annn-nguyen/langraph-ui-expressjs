@@ -40,21 +40,6 @@ Award **+5 bonus points** per bonus element **if it is explicitly documented**:
 - These bonus points are **added to the total score after averaging** the 7 mandatory Qnote elements
 - **DO NOT count bonus elements in the average denominator**
 
-
-## Step 5: Calculate the final score:
-- List all 7 scores of mandatory elements: Element Scores: [X, X, X, X, X, X, X]
-- Sum = Total of 7 scores
-- Average Score = Sum ÷ 7
-- Bonus Points: +5 for each documented bonus element (max 20)
-- Final Overall Score = Average Score + Bonus Points
-
-Example:
-- Element Scores: [80, 100, 90, 80, 85, 100, 95]
-- Sum = 80 + 100 + 90 + 80 +85 + 100 +95 = 620
-- Average Score = 630 ÷ 7 = 90 
-- Bonus Points: Problem List (+5), Med List (+5), ROS (+5) = +15
-- Final Score = 90 + 15 = 105
-
 # Final Report:
 For each element, provide the score, quoted content, and a brief rationale.At the end, include:
 - The overall average score and any bonus points
